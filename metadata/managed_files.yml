@@ -4,4 +4,5 @@ locked_files:
 - usr/
 - var/
 processed_templates:
+- 'templates/*.erb'
 - '**/*.erb'
