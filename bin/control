@@ -5,6 +5,9 @@ CALL=$1
 pidfile="${OPENSHIFT_VARNISH_DIR}var/run/varnish.pid"
 
 function start {
+  if [ -f "$OPENSHIFT_REPO_DIR/default.vcl.erb" ]; then
+    oo-erb $OPENSHIFT_REPO_DIR/default.vcl.erb > $OPENSHIFT_REPO_DIR/default.vcl
+  fi
 
   if ! [ -f $pidfile ]; then
     "${OPENSHIFT_VARNISH_DIR}usr/sbin/varnishd" -f $OPENSHIFT_REPO_DIR/default.vcl \
